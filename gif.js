@@ -16,12 +16,12 @@ $(document).ready(function () {
 
     //dynamically create buttons//loop//
 
-    function start() {
+   function start() {
 
-        for (i = 0; i < topic.length; i++) {
+    for (i = 0; i < topic.length; i++) {
 
             let buttons = $("<button>");
-            buttons.addClass("btn btn-danger");
+            buttons.addClass("newButton btn btn-danger");
             buttons.text(topic[i]);
             buttons.attr("data-value", topic[i]);
             $(".buttonsDiv").append(buttons);
@@ -29,13 +29,17 @@ $(document).ready(function () {
 
 
         }
-    };
 
-    start();
+    
+
+        
+    
+
+   
 
     //onclick funciton to return results of button clicked//this data attribute//
 
-    $(".btn").on("click", function () {
+    $(".newButton").on("click", function () {
 
 
         //searchInfo();
@@ -94,7 +98,7 @@ $(document).ready(function () {
 
                 };
 
-                //  console.log(response.data[i].images.fixed_height_still);
+                //onclick function for animation and still//
 
                 $(".imageResults").on("click", function () {
                     //console.log("clicked");
@@ -126,7 +130,7 @@ $(document).ready(function () {
                         $(this).attr("data-state", "still")
                     };
 
-                
+
 
 
 
@@ -147,6 +151,8 @@ $(document).ready(function () {
                 });
 
 
+               
+            
 
 
 
@@ -154,76 +160,58 @@ $(document).ready(function () {
 
 
 
+            },
 
-    },
+                function (error) {
 
-        function (error) {
-
-            console.log("error");
-
-
-
-        });
+                    console.log("error");
 
 
 
+                });
 
 
 
+    });
 
+};
 
-
-    //onclick function for animation and still//
-
-    // $(".imgResults").on("click", function () {
-    //     console.log("clicked");
-
-
-    //     if (state === "still") {
-
-    //         console.log("clicked");
-
-    //         $(this).attr("src", $(this).attr("data-move"));
-    //         $(this).attr("data-state", "animate");
-
-    //         console.log(state);
-
-
-
-
-
-
-    //     }
-
-    //     else {
-
-
-    //         $(this).attr("src", $(this).attr("data-still"));
-
-    //         $(this).attr("data-state", "still")
-    //     };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // })
-
+start ();
 
 
     // form function for search option to get value and push to the array//
+
+    $(".submitBtn").on("click", function () {
+
+        let newInput = $("#formGroupExampleInput").val();
+
+        console.log(newInput);
+       
+        topic.push(newInput);
+
+        $(".buttonsDiv").empty();
+
+        start();
+
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     });
 
 
     //function calll that takes each topic in the array and remakes the buttons//
@@ -268,5 +256,5 @@ $(document).ready(function () {
 
 
 
-});
+
 });
