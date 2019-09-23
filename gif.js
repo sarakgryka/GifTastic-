@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     //Create an array for buttons//
 
-    let topic = ["Detroit Lions", "Pittsburg Steelers", "Chicago Bears", "Denver Broncos", "Oakland Raiders", "Dallas Cowboys", "Miami Dolphins", "New England Patriots", "Cleveland Browns", "Tennesee Titans", "Green Bay Packers", "Jacksonville Jaguars"];
+    let topic = ["Detroit Lions", "Pittsburg Steelers", "Chicago Bears", "Denver Broncos", "Oakland Raiders", "Dallas Cowboys", "Miami Dolphins", "New England Patriots", "Cleveland Browns", "Tennessee Titans", "Green Bay Packers", "Jacksonville Jaguars"];
 
 
     // define variables//query, api//
@@ -62,27 +62,29 @@ $(document).ready(function () {
 
                 console.log(response);
 
+                
 
+                for (j = 0; j < 10; j++) {
 
-                for (i = 0; i < response.data.length; i++) {
+                    let imageUrl = response.data[j].images.fixed_height_still.url;
 
-                    let imageUrl = response.data[i].images.fixed_height_still.url;
-
-                    let allResults = $("<div>");
-                    allResults.addClass("allResults");
+                    // let allResults = $("<div>");
+                    // allResults.addClass("allResults");
 
 
                     let apiResults = $("<img>");
                     apiResults.attr("src", imageUrl);
                     
+                    
 
                     let ratings =$ ("<h1>");
-                    ratings.text("rating: " + response.data[i].rating);
+                     ratings.text("rating: " + response.data[j].rating);
 
-                    $(".allResults").append(ratings);
-                    $(".allResults").append(apiResults);
+                    // $(".allResults").append(ratings);
+                    // $(".allResults").append(apiResults);
                    
-                    $(".resultsDiv").append(allResults);
+                    $(".resultsDiv").prepend(ratings,apiResults);
+                   // $(".ratingsDiv").prepend(ratings);
                     console.log(queryUrl);
 
                     //  console.log(response.data[i].images.fixed_height_still);
