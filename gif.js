@@ -12,7 +12,7 @@ $(document).ready(function () {
 
     let queryUrl = `https://api.giphy.com/v1/gifs/search?${apiKey}&q=${searchTopic}&limit=10&lang=en`;
 
-    let state = "still";
+    let state = $(this).attr("data-state");
 
     //dynamically create buttons//loop//
 
@@ -26,7 +26,7 @@ $(document).ready(function () {
             buttons.attr("data-value", topic[i]);
             $(".buttonsDiv").append(buttons);
 
-          
+
 
         }
     };
@@ -47,10 +47,10 @@ $(document).ready(function () {
 
         //pulls information from api and returns on page//still animation and rating//
 
-    searchTopic = $(this).attr("data-value");
-    console.log(searchTopic);
+        searchTopic = $(this).attr("data-value");
+        console.log(searchTopic);
 
-     queryUrl = `https://api.giphy.com/v1/gifs/search?${apiKey}&q=${searchTopic}&limit=10&lang=en`;
+        queryUrl = `https://api.giphy.com/v1/gifs/search?${apiKey}&q=${searchTopic}&limit=10&lang=en`;
 
 
         $.ajax({
@@ -62,50 +62,110 @@ $(document).ready(function () {
 
                 console.log(response);
 
-                
+
 
                 for (j = 0; j < 10; j++) {
 
-                    let imageUrl = response.data[j].images.fixed_height_still.url;
+                    let imageUrl = response.data[j].images.downsized_still.url;
+                    let imageMove = response.data[j].images.downsized.url;
 
                     // let allResults = $("<div>");
                     // allResults.addClass("allResults");
 
 
                     let apiResults = $("<img>");
+                    apiResults.addClass("imageResults");
                     apiResults.attr("src", imageUrl);
-                    
-                    
+                    apiResults.attr("data-state", "still");
+                    apiResults.attr("data-move", imageMove);
+                    apiResults.attr("data-still", imageUrl);
 
-                    let ratings =$ ("<h1>");
-                     ratings.text("rating: " + response.data[j].rating);
+
+
+                    let ratings = $("<h1>");
+                    ratings.text("rating: " + response.data[j].rating);
 
                     // $(".allResults").append(ratings);
                     // $(".allResults").append(apiResults);
-                   
-                    $(".resultsDiv").prepend(ratings,apiResults);
-                   // $(".ratingsDiv").prepend(ratings);
+
+                    $(".resultsDiv").prepend(ratings, apiResults);
+                    // $(".ratingsDiv").prepend(ratings);
                     console.log(queryUrl);
-
-                    //  console.log(response.data[i].images.fixed_height_still);
-
-
-
 
                 };
 
+                //  console.log(response.data[i].images.fixed_height_still);
 
-            },
+                $(".imageResults").on("click", function () {
+                    //console.log("clicked");
+                    state = $(this).attr("data-state");
 
-                function (error) {
 
-                    console.log("error");
+                    if (state === "still") {
+
+                        console.log("clicked");
+
+                        $(this).attr("src", $(this).attr("data-move"));
+                        $(this).attr("data-state", "animate");
+
+                        console.log(state);
+
+
+
+
+
+
+                    }
+
+                    else {
+                        console.log("clicked else")
+
+
+                        $(this).attr("src", $(this).attr("data-still"));
+
+                        $(this).attr("data-state", "still")
+                    };
+
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
                 });
 
-    });
+
+
+
+
+
+
+
+
+
+    },
+
+        function (error) {
+
+            console.log("error");
+
+
+
+        });
+
+
 
 
 
@@ -114,6 +174,52 @@ $(document).ready(function () {
 
 
     //onclick function for animation and still//
+
+    // $(".imgResults").on("click", function () {
+    //     console.log("clicked");
+
+
+    //     if (state === "still") {
+
+    //         console.log("clicked");
+
+    //         $(this).attr("src", $(this).attr("data-move"));
+    //         $(this).attr("data-state", "animate");
+
+    //         console.log(state);
+
+
+
+
+
+
+    //     }
+
+    //     else {
+
+
+    //         $(this).attr("src", $(this).attr("data-still"));
+
+    //         $(this).attr("data-state", "still")
+    //     };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // })
 
 
 
@@ -162,4 +268,5 @@ $(document).ready(function () {
 
 
 
+});
 });
