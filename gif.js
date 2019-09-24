@@ -88,13 +88,18 @@ $(document).ready(function () {
 
 
 
-                    let ratings = $("<h1>");
-                    ratings.text("rating: " + response.data[j].rating);
+                    let ratings = $("<h5>");
+                    ratings.text("Rating: " + response.data[j].rating);
 
                     // $(".allResults").append(ratings);
                     // $(".allResults").append(apiResults);
 
-                    $(".resultsDiv").prepend(apiResults, ratings);
+                    let allResults = $("<div>");
+                    allResults.addClass("allResults");
+                    allResults.prepend(apiResults, ratings);
+
+
+                    $(".resultsDiv").prepend(allResults);
                     // $(".ratingsDiv").prepend(ratings);
                     console.log(queryUrl);
 
