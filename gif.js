@@ -18,6 +18,8 @@ $(document).ready(function () {
 
    function start() {
 
+    
+
     for (i = 0; i < topic.length; i++) {
 
             let buttons = $("<button>");
@@ -42,7 +44,7 @@ $(document).ready(function () {
     $(".newButton").on("click", function () {
 
 
-        //searchInfo();
+        $(".resultsDiv").empty();
 
 
 
@@ -92,7 +94,7 @@ $(document).ready(function () {
                     // $(".allResults").append(ratings);
                     // $(".allResults").append(apiResults);
 
-                    $(".resultsDiv").prepend(ratings, apiResults);
+                    $(".resultsDiv").prepend(apiResults, ratings);
                     // $(".ratingsDiv").prepend(ratings);
                     console.log(queryUrl);
 
@@ -185,13 +187,26 @@ start ();
 
         let newInput = $("#formGroupExampleInput").val();
 
-        console.log(newInput);
+
+        if (newInput === ""){
+
+            return;
+        }
+
+        else if (topic.includes(newInput)){
+
+            return;
+        }
+
+        else{
+
        
         topic.push(newInput);
 
         $(".buttonsDiv").empty();
+        
 
-        start();
+        start();}
 
        
 
