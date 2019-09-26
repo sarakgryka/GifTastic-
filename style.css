@@ -23,6 +23,11 @@ h5{
     color:white;
 }
 
+.newButton{
+
+    margin: 5px;
+}
+
 label {
 
     color: white;
@@ -32,6 +37,9 @@ label {
 
     float : left;
     padding: 10px;
+    position: relative;
+    margin-left: 40px;
+    
 }
 
 body {

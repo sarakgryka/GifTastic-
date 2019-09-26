@@ -18,6 +18,8 @@ $(document).ready(function () {
 
    function start() {
 
+    $("#formGroupExampleInput").html("");
+
     
 
     for (i = 0; i < topic.length; i++) {
@@ -140,21 +142,6 @@ $(document).ready(function () {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 });
 
 
@@ -192,6 +179,8 @@ start ();
 
         let newInput = $("#formGroupExampleInput").val();
 
+       
+
 
         if (newInput === ""){
 
@@ -209,6 +198,7 @@ start ();
         topic.push(newInput);
 
         $(".buttonsDiv").empty();
+       
         
 
         start();}
