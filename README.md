@@ -9,3 +9,6 @@ If the image is clicked the GIF will animate, if clicked again the GIF will retu
 You can also add additional buttons with more teams. 
 
 Enjoy!
+
+https://sarakgryka.github.io/GifTastic-/
+
